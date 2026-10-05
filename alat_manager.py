@@ -6,10 +6,10 @@ class AlatManager:
     KATEGORI_AWAL = ("Elektronik", "Mekanik", "Optik", "Umum")
 
     def __init__(self):
-        self.__data: dict[str, Alat] = {}  # key = kode alat
+        self.__data: dict[str, Alat] = {}  
         self.__daftar_kategori: set[str] = set(self.KATEGORI_AWAL)
 
-    # ---- kategori ----
+   
     def tambah_kategori(self, nama: str) -> None:
         nama = nama.strip().title()
         if not nama:
@@ -30,7 +30,7 @@ class AlatManager:
             )
         return kategori
 
-    # ---- CRUD alat ----
+  
     def tambah(self, kode: str, nama: str, kategori: str, stok: int) -> Alat:
         kode = kode.strip().upper()
         if not kode:
@@ -71,7 +71,7 @@ class AlatManager:
     def semua(self) -> list[Alat]:
         return list(self.__data.values())
 
-    # ---- laporan ----
+  
     def daftar_tersedia(self) -> list[Alat]:
         return [a for a in self.__data.values() if a.stok_tersedia > 0]
 
