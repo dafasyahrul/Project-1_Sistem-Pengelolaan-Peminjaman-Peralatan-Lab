@@ -15,7 +15,6 @@ class Alat:
         self.__stok_rusak_ringan = 0
         self.__stok_rusak_berat = 0
 
-    # ---- getter ----
     @property
     def kode(self) -> str:
         return self.__kode
@@ -48,7 +47,7 @@ class Alat:
     def stok_rusak_berat(self) -> int:
         return self.__stok_rusak_berat
 
-    # ---- perilaku ----
+    
     def ubah_data(self, nama: str, kategori: str) -> None:
         self.__nama = nama
         self.__kategori = kategori
