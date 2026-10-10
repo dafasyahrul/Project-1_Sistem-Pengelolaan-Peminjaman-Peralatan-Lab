@@ -1,7 +1,6 @@
 """Kelas entitas Alat (stok dikelola per kondisi)."""
 from models.enums import KondisiAlat
 
-
 class Alat:
     def __init__(self, kode: str, nama: str, kategori: str, stok_total: int):
         if stok_total < 1:
