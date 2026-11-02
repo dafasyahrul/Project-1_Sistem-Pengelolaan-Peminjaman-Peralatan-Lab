@@ -88,3 +88,31 @@ class TransaksiManager:
 
     def semua(self) -> list[Transaksi]:
         return list(self.__data.values())
+
+    def jumlah_transaksi_selesai(self) -> int:
+        return sum(1 for t in self.__data.values() if not t.masih_aktif())
+
+    def jumlah_transaksi_aktif(self) -> int:
+        return len(self.transaksi_aktif())
+
+    def alat_paling_sering_dipinjam(self) -> list[tuple]:
+        hitung: dict[str, list] = {}
+        for t in self.__data.values():
+            for i in t.daftar_item:
+                kode = i.alat.kode
+                if kode not in hitung:
+                    hitung[kode] = [i.alat, 0, 0]
+                hitung[kode][1] += 1
+                hitung[kode][2] += i.jumlah
+        return sorted((tuple(v) for v in hitung.values()),
+                      key=lambda x: (-x[1], -x[2], x[0].kode))
+
+    def mahasiswa_paling_sering_meminjam(self) -> list[tuple]:
+        hitung: dict[str, list] = {}
+        for t in self.__data.values():
+            nim = t.mahasiswa.nim
+            if nim not in hitung:
+                hitung[nim] = [t.mahasiswa, 0]
+            hitung[nim][1] += 1
+        return sorted((tuple(v) for v in hitung.values()),
+                      key=lambda x: (-x[1], x[0].nim))
